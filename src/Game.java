@@ -1,10 +1,22 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Panel;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 
 public class Game extends JFrame{
@@ -13,16 +25,28 @@ public class Game extends JFrame{
 	public static int screenHeight = 720;	
 	public static String title = "Graph";
 	
-	//Loop
-	private boolean run;
+	//JButtons
+	private JButton zoomIn;
+	private JButton zoomOut;
+	private JButton testEquation;
 	
-	//Graphic stuff
-	private Graphics2D g2d;
-	private BufferedImage backbuffer;
+	//JLabels 
+	private JLabel equation;
 	
-	//Objects here 
-	private Graph graph;
-	private LinearEquation linearEquation;
+	//Canvas 
+	private GameComponent gameComponent;
+	
+	//Dimensions
+	private Dimension zoomButtonDimension;
+	private Dimension testEquationDimension;
+	private Dimension topPanelDimension;
+	private Dimension rightPanelDimension;
+	
+	//Panels
+	private Panel panelTop;
+	private Panel panelRight;
+	
+	private final int rightPanelWidth = 50;
 	
 	public static void main(String[]args){
 		new Game();
@@ -33,58 +57,65 @@ public class Game extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setLayout(new BorderLayout());
+		
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}catch(Exception e){}
+		SwingUtilities.updateComponentTreeUI(this);
+		
+		setScreen();
+		
+		add(gameComponent,BorderLayout.CENTER);
+		add(panelTop,BorderLayout.NORTH);
+		add(panelRight,BorderLayout.EAST);
+		
 		setVisible(true);
-		
-		init();
-		
-		run = true;
-		
-		gameLoop();
 	}
-	private void gameLoop(){
-		while(run){
-			uppdate();
-			render();
-			repaint();
-			try {
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+	private void setScreen(){
+		
+		panelRight = new Panel();
+		panelTop = new Panel();
+		
+		zoomIn = new JButton();
+		zoomOut = new JButton();
+		testEquation = new JButton();
+		
+		equation = new JLabel();
+		
+		gameComponent = new GameComponent(this);
+		
+		zoomButtonDimension = new Dimension(rightPanelWidth-5, rightPanelWidth-5);
+		testEquationDimension = new Dimension(100,50);
+		topPanelDimension = new Dimension(getWidth(),100);
+		rightPanelDimension = new Dimension(rightPanelWidth,getHeight());
+		
+		zoomIn.setText("+");
+		zoomIn.setPreferredSize(zoomButtonDimension);
+		zoomIn.setActionCommand("zoomInButton");
+		
+		zoomOut.setText("-");
+		zoomOut.setPreferredSize(zoomButtonDimension);
+		zoomOut.setActionCommand("zoomOutButton");
+		
+		testEquation.setText("Test");
+		testEquation.setPreferredSize(testEquationDimension);
+		testEquation.setAlignmentX(CENTER_ALIGNMENT);
+		testEquation.setActionCommand("testEquation");
+		
+		equation.setText("2x+3");
+		equation.setAlignmentX(CENTER_ALIGNMENT);
+		
+		panelTop.setLayout(new BoxLayout(panelTop, BoxLayout.Y_AXIS));
+		panelTop.setPreferredSize(topPanelDimension);
+		panelTop.add(Box.createRigidArea(new Dimension(0,20)));
+		panelTop.add(equation);
+		panelTop.add(Box.createRigidArea(new Dimension(0,10)));
+		panelTop.add(testEquation);
+		
+		panelRight.setPreferredSize(rightPanelDimension);
+		panelRight.add(zoomIn);
+		panelRight.add(zoomOut);
 	}
 	
-	private void render(){
-		
-		if(backbuffer == null){
-			backbuffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-			g2d = backbuffer.createGraphics();
-		}
-		
-		g2d.setColor(Color.WHITE);
-		g2d.fill(new Rectangle(0,0,getWidth()-1,getHeight()-1));
-		
-		draw(g2d);
-	}
-	public void paint(Graphics g){
-		g.drawImage(backbuffer, 0, 0, this);
-	}
-	
-	private void init(){
-		graph = new Graph(1,1);
-		linearEquation = new LinearEquation(7f, 7f, graph, Color.BLACK);
-	}
-	
-	private void draw(Graphics2D g2d){
-		
-		graph.draw(g2d);
-		linearEquation.draw(g2d);
-		
-	}
-	
-	
-	private void uppdate(){
-		graph.uppdate();
-		linearEquation.uppdate();
-	}
 }

@@ -6,6 +6,7 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 	
 	private final float maxXaxis,minXaxis;
 	private final float maxYaxis,minYaxis;
+	private final float originX, originY;
 	private final float scaleXaxis, scaleYaxis;
 	
 	public Graph(float scaleXaxis,float scaleYaxis){
@@ -17,6 +18,9 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 		
 		this.scaleXaxis = scaleXaxis;
 		this.scaleYaxis = scaleYaxis ;
+		
+		originX = setXCoordinate(0);
+		originY = setYCoordinate(0);
 	}
 	
 	@Override
@@ -24,22 +28,30 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 		
 		g2d.setColor(new Color(220,220,220));
 		
-		for(float y = minYaxis;y<=maxYaxis;y+=scaleYaxis){
+		for(float y = 0;y<=maxYaxis;y+=scaleYaxis){
+			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y));
+		}
+		for(float y = 0;y>=minYaxis;y-=scaleYaxis){
 			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y));
 		}
 	
-		for(float x = minXaxis;x<=maxXaxis;x+=scaleXaxis){
+		for(float x = 0;x<=maxXaxis;x+=scaleXaxis){
+			g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x), (int)setYCoordinate(maxYaxis));
+		}
+		for(float x = 0;x>=minXaxis;x-=scaleXaxis){
 			g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x), (int)setYCoordinate(maxYaxis));
 		}
 		
 		g2d.setColor(new Color(0,0,0));
 		
-		
+		//Draw line rectangle border
+		g2d.drawRect(0, 0, 543, 590);
+
 		//Y-axis
-		g2d.drawLine((int)setXCoordinate(0), (int)setYCoordinate(minYaxis), (int)setXCoordinate(0), (int)setYCoordinate(maxYaxis));
+		g2d.drawLine((int)originX, (int)setYCoordinate(minYaxis), (int)originX, (int)setYCoordinate(maxYaxis));
 			
 		//X-axis
-		g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(0), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(0));
+		g2d.drawLine((int)setXCoordinate(minXaxis), (int)originY, (int)setXCoordinate(maxXaxis), (int)originY);
 	}
 
 	@Override
