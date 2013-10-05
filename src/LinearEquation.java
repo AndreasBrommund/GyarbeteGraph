@@ -20,7 +20,7 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	@Override
 	public void draw(Graphics2D g2d) {
 		g2d.setColor(color);
-		for(float x = graph.getMinXaxis();x <= graph.getMaxXaxis();x+=0.001){
+		for(float x = graph.getMinXaxis();x <= graph.getMaxXaxis();x+=0.0001){
 			
 			float y = k*x+m;
 			

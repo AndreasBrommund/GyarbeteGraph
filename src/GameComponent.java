@@ -5,14 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-	
-
 public class GameComponent extends Canvas{
 	
 	private Game game;
-	
-	//Loop
-	private boolean run;
 		
 	//Graphic stuff
 	private Graphics2D g2d;
@@ -23,26 +18,17 @@ public class GameComponent extends Canvas{
 	private LinearEquation linearEquation;
 	
 	public GameComponent(Game game) {
-		run = true;
 		this.game = game;
 		init();
 		
-		gameLoop();
+		run();
 	}
 	
-	private void gameLoop(){
-		//while(run){
-			uppdate();
-			render();
-			repaint();
-			try {
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		//}
+	private void run(){
+		render();
+		repaint();
 	}
-	
+		
 	private void render(){
 		
 		if(backbuffer == null){
@@ -65,7 +51,6 @@ public class GameComponent extends Canvas{
 	}
 	
 	private void draw(Graphics2D g2d){
-		
 		graph.draw(g2d);
 		linearEquation.draw(g2d);
 		
