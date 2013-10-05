@@ -4,7 +4,8 @@ import java.awt.Graphics2D;
 
 public class LinearEquation extends CoordinateHandler implements BaseEntity{
 
-	
+
+
 	private Graph graph;
 	
 	private final Color color; 

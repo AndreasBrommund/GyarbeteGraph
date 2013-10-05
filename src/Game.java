@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Panel;
 
 import javax.swing.Box;
@@ -45,6 +46,7 @@ public class Game extends JFrame{
 	}
 	public Game(){
 		super(title);
+		
 		setSize(screenWidth, screenHeight);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
@@ -58,10 +60,10 @@ public class Game extends JFrame{
 		
 		setScreen();
 		
-		add(gameComponent,BorderLayout.CENTER);
+		
 		add(panelTop,BorderLayout.NORTH);
 		add(panelRight,BorderLayout.EAST);
-		
+		add(gameComponent,BorderLayout.CENTER);
 		setVisible(true);
 	}
 	private void setScreen(){
