@@ -2,14 +2,24 @@ import java.awt.Canvas;
 
 public class CoordinateHandler extends Canvas{
 	
-	protected static int scale = 30;
+	protected static int scale = 70;
 	
-	protected static float setXCoordinate(float coordinate){
+	protected  float setXCoordinate(float coordinate){
 		coordinate *= scale;
-		return coordinate-24+600/2;
+		return coordinate-24+Game.screenWidth/2;
 	}
-	protected static float setYCoordinate(float coordinate){
+	protected float setYCoordinate(float coordinate){
 		coordinate *= scale;
-		return coordinate*-1+-70+720/2;
+		return coordinate*-1-70+Game.screenHeight/2;
+	}
+	
+	public static void zoomIn(){
+		scale += 5;
+	}
+	public static void zoomOut(){
+		if(scale > 5){
+			scale -= 5;
+			
+		}
 	}
 }

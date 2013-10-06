@@ -46,7 +46,7 @@ public class GameComponent extends Canvas{
 	}
 	
 	private void init(){
-		graph = new Graph(1,1);
+		graph = new Graph(10f,10f);
 		linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
 	}
 	
@@ -55,10 +55,7 @@ public class GameComponent extends Canvas{
 		linearEquation.draw(g2d);
 		
 	}
-	
-	
-	private void uppdate(){
-		graph.uppdate();
-		linearEquation.uppdate();
+	public void uppdateScreen(){
+		run();
 	}
 }

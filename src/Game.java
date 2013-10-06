@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Panel;
@@ -39,6 +40,8 @@ public class Game extends JFrame{
 	private Panel panelTop;
 	private Panel panelRight;
 	
+	EventHandler eventHandler;
+	
 	private final int rightPanelWidth = 50;
 	
 	public static void main(String[]args){
@@ -53,6 +56,8 @@ public class Game extends JFrame{
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}catch(Exception e){}
@@ -60,13 +65,14 @@ public class Game extends JFrame{
 		
 		setScreen();
 		
-		
 		add(panelTop,BorderLayout.NORTH);
 		add(panelRight,BorderLayout.EAST);
 		add(gameComponent,BorderLayout.CENTER);
 		setVisible(true);
 	}
 	private void setScreen(){
+		
+		eventHandler = new EventHandler(this);
 		
 		panelRight = new Panel();
 		panelTop = new Panel();
@@ -87,10 +93,12 @@ public class Game extends JFrame{
 		zoomIn.setText("+");
 		zoomIn.setPreferredSize(zoomButtonDimension);
 		zoomIn.setActionCommand("zoomInButton");
+		zoomIn.addActionListener(eventHandler);
 		
 		zoomOut.setText("-");
 		zoomOut.setPreferredSize(zoomButtonDimension);
 		zoomOut.setActionCommand("zoomOutButton");
+		zoomOut.addActionListener(eventHandler);
 		
 		testEquation.setText("Test");
 		testEquation.setPreferredSize(testEquationDimension);
@@ -110,6 +118,9 @@ public class Game extends JFrame{
 		panelRight.setPreferredSize(rightPanelDimension);
 		panelRight.add(zoomIn);
 		panelRight.add(zoomOut);
+	}
+	public GameComponent getGameComponent() {
+		return gameComponent;
 	}
 	
 }

@@ -16,6 +16,8 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 		this.m = m;
 		this.graph = graph;
 		this.color = color;
+		
+		init();
 	}
 	
 	@Override
@@ -32,9 +34,8 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	}
 
 	@Override
-	public void uppdate() {
-		
+	public void init() {
+		// TODO Auto-generated method stub
 		
 	}
-
 }
