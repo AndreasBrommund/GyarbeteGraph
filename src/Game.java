@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -35,12 +36,17 @@ public class Game extends JFrame{
 	private Dimension testEquationDimension;
 	private Dimension topPanelDimension;
 	private Dimension rightPanelDimension;
+	private Dimension scaleTextFieldDimension;
 	
 	//Panels
 	private Panel panelTop;
 	private Panel panelRight;
 	
-	EventHandler eventHandler;
+	//TextField
+	private JTextField scaleX; 
+	private JTextField scaleY;
+	
+	private EventHandler eventHandler;
 	
 	private final int rightPanelWidth = 50;
 	
@@ -74,6 +80,9 @@ public class Game extends JFrame{
 		
 		eventHandler = new EventHandler(this);
 		
+		scaleX = new JTextField();
+		scaleY = new JTextField();
+		
 		panelRight = new Panel();
 		panelTop = new Panel();
 		
@@ -89,6 +98,18 @@ public class Game extends JFrame{
 		testEquationDimension = new Dimension(100,50);
 		topPanelDimension = new Dimension(getWidth(),100);
 		rightPanelDimension = new Dimension(rightPanelWidth,getHeight());
+		scaleTextFieldDimension = new Dimension(rightPanelWidth-5,rightPanelWidth-5);
+		
+		scaleX.setText("1");
+		scaleX.setPreferredSize(scaleTextFieldDimension);
+		scaleX.setActionCommand("scaleX");
+		scaleX.addActionListener(eventHandler);
+		
+		scaleY.setText("1");
+		scaleY.setPreferredSize(scaleTextFieldDimension);
+		scaleY.setActionCommand("scaleY");
+		scaleY.addActionListener(eventHandler);
+		
 		
 		zoomIn.setText("+");
 		zoomIn.setPreferredSize(zoomButtonDimension);
@@ -105,7 +126,7 @@ public class Game extends JFrame{
 		testEquation.setAlignmentX(CENTER_ALIGNMENT);
 		testEquation.setActionCommand("testEquation");
 		
-		equation.setText("2x+3");
+		equation.setText("2x+0");
 		equation.setAlignmentX(CENTER_ALIGNMENT);
 		
 		panelTop.setLayout(new BoxLayout(panelTop, BoxLayout.Y_AXIS));
@@ -118,9 +139,16 @@ public class Game extends JFrame{
 		panelRight.setPreferredSize(rightPanelDimension);
 		panelRight.add(zoomIn);
 		panelRight.add(zoomOut);
+		panelRight.add(scaleX);
+		panelRight.add(scaleY);
 	}
 	public GameComponent getGameComponent() {
 		return gameComponent;
 	}
-	
+	public JTextField getScaleX() {
+		return scaleX;
+	}
+	public JTextField getScaleY() {
+		return scaleY;
+	}
 }

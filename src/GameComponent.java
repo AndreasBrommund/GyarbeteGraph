@@ -17,6 +17,9 @@ public class GameComponent extends Canvas{
 	private Graph graph;
 	private LinearEquation linearEquation;
 	
+	//Scale 
+	private int scaleX,scaleY;
+	
 	public GameComponent(Game game) {
 		this.game = game;
 		init();
@@ -46,7 +49,7 @@ public class GameComponent extends Canvas{
 	}
 	
 	private void init(){
-		graph = new Graph(10f,10f);
+		graph = new Graph(1,1);
 		linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
 	}
 	
@@ -57,5 +60,8 @@ public class GameComponent extends Canvas{
 	}
 	public void uppdateScreen(){
 		run();
+	}
+	public void setScale(float x,float y){
+		graph = new Graph(x, y);
 	}
 }
