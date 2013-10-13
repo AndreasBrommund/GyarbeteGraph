@@ -36,7 +36,6 @@ public class Game extends JFrame{
 	private Dimension testEquationDimension;
 	private Dimension topPanelDimension;
 	private Dimension rightPanelDimension;
-	private Dimension scaleTextFieldDimension;
 	
 	//Panels
 	private Panel panelTop;
@@ -86,12 +85,12 @@ public class Game extends JFrame{
 		equation = new JLabel();
 		
 		gameComponent = new GameComponent(this);
+		gameComponent.addMouseListener(eventHandler);
 		
 		zoomButtonDimension = new Dimension(rightPanelWidth-5, rightPanelWidth-5);
 		testEquationDimension = new Dimension(100,50);
 		topPanelDimension = new Dimension(getWidth(),100);
 		rightPanelDimension = new Dimension(rightPanelWidth,getHeight());
-		scaleTextFieldDimension = new Dimension(rightPanelWidth-5,rightPanelWidth-5);
 		
 		zoomIn.setText("+");
 		zoomIn.setPreferredSize(zoomButtonDimension);

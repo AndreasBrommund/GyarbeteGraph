@@ -9,7 +9,10 @@ import java.awt.image.BufferedImage;
 public class GameComponent extends Canvas{
 	
 	private Game game;
-		
+	
+	//Width 543
+	//Height 590
+	
 	//Graphic stuff
 	private Graphics2D g2d;
 	private BufferedImage backbuffer;
@@ -50,10 +53,12 @@ public class GameComponent extends Canvas{
 	
 	private void init(){
 		graph = new Graph(1f,1f);
-		linearEquation = new LinearEquation(-3f, 3f, graph, Color.BLACK);
+		linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
 	}
 	
 	private void draw(Graphics2D g2d){
+
+		
 		graph.draw(g2d);
 		linearEquation.draw(g2d);
 		

@@ -1,9 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 
-public class EventHandler implements ActionListener{
+public class EventHandler extends CoordinateHandler implements ActionListener, MouseListener{
 	
 	private Game game;
 	
@@ -23,4 +25,22 @@ public class EventHandler implements ActionListener{
 		}
 		game.getGameComponent().uppdateScreen();
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		getXCoordinate(e.getX());
+		getYCoordinate(e.getY());
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public void mousePressed(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
 }

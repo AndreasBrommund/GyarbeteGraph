@@ -8,12 +8,21 @@ public class CoordinateHandler extends Canvas{
 	protected  float setXCoordinate(float coordinate){
 		coordinate *= scale;
 		coordinate *= scaleXaxis;
-		return coordinate-24+Game.screenWidth/2;
+		
+		return coordinate+543/2;
 	}
 	protected float setYCoordinate(float coordinate){
 		coordinate *= scale;
 		coordinate *= scaleYaxis;
-		return coordinate*-1-70+Game.screenHeight/2;
+		return coordinate*-1+590/2;
+	}
+	protected float getXCoordinate(float coordinate){
+		
+		return (coordinate-543/2)/scale;
+	}
+	protected float getYCoordinate(float coordinate){
+		
+		return ((coordinate-590/2)/scale)*-1;
 	}
 	
 	public static void zoomIn(){
