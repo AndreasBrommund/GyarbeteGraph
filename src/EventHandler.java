@@ -20,15 +20,6 @@ public class EventHandler implements ActionListener{
 		case "zoomInButton":
 			CoordinateHandler.zoomIn();
 			break;
-		case "scaleX":
-		case "scaleY":
-			//Fix bug
-			/*
-			float x = Float.parseFloat(game.getScaleX().getText());
-			float y = Float.parseFloat(game.getScaleY().getText());
-			game.getGameComponent().setScale(x, y);
-			*/
-			break;
 		}
 		game.getGameComponent().uppdateScreen();
 	}

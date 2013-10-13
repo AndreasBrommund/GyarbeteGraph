@@ -7,12 +7,11 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 	private float maxXaxis,minXaxis;
 	private float maxYaxis,minYaxis;
 	private final float originX, originY;
-	private float scaleXaxis, scaleYaxis;
 	
-	public Graph(float scaleXaxis,float scaleYaxis){
+	public Graph(float sX,float sY){
 		
-		this.scaleXaxis = scaleXaxis;
-		this.scaleYaxis = scaleYaxis ;
+		scaleXaxis = sX;
+		scaleYaxis = sY;
 		
 		originX = setXCoordinate(0);
 		originY = setYCoordinate(0);

@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -17,12 +18,11 @@ public class GameComponent extends Canvas{
 	private Graph graph;
 	private LinearEquation linearEquation;
 	
-	//Scale 
-	private int scaleX,scaleY;
-	
 	public GameComponent(Game game) {
 		this.game = game;
 		init();
+		
+		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		run();
 	}
@@ -49,8 +49,8 @@ public class GameComponent extends Canvas{
 	}
 	
 	private void init(){
-		graph = new Graph(1,1);
-		linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
+		graph = new Graph(1f,1f);
+		linearEquation = new LinearEquation(-3f, 3f, graph, Color.BLACK);
 	}
 	
 	private void draw(Graphics2D g2d){

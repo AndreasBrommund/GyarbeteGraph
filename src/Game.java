@@ -42,10 +42,6 @@ public class Game extends JFrame{
 	private Panel panelTop;
 	private Panel panelRight;
 	
-	//TextField
-	private JTextField scaleX; 
-	private JTextField scaleY;
-	
 	private EventHandler eventHandler;
 	
 	private final int rightPanelWidth = 50;
@@ -62,7 +58,7 @@ public class Game extends JFrame{
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		
-		setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -79,9 +75,6 @@ public class Game extends JFrame{
 	private void setScreen(){
 		
 		eventHandler = new EventHandler(this);
-		
-		scaleX = new JTextField();
-		scaleY = new JTextField();
 		
 		panelRight = new Panel();
 		panelTop = new Panel();
@@ -100,31 +93,23 @@ public class Game extends JFrame{
 		rightPanelDimension = new Dimension(rightPanelWidth,getHeight());
 		scaleTextFieldDimension = new Dimension(rightPanelWidth-5,rightPanelWidth-5);
 		
-		scaleX.setText("1");
-		scaleX.setPreferredSize(scaleTextFieldDimension);
-		scaleX.setActionCommand("scaleX");
-		scaleX.addActionListener(eventHandler);
-		
-		scaleY.setText("1");
-		scaleY.setPreferredSize(scaleTextFieldDimension);
-		scaleY.setActionCommand("scaleY");
-		scaleY.addActionListener(eventHandler);
-		
-		
 		zoomIn.setText("+");
 		zoomIn.setPreferredSize(zoomButtonDimension);
 		zoomIn.setActionCommand("zoomInButton");
 		zoomIn.addActionListener(eventHandler);
+		zoomIn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		zoomOut.setText("-");
 		zoomOut.setPreferredSize(zoomButtonDimension);
 		zoomOut.setActionCommand("zoomOutButton");
 		zoomOut.addActionListener(eventHandler);
+		zoomOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		testEquation.setText("Test");
 		testEquation.setPreferredSize(testEquationDimension);
 		testEquation.setAlignmentX(CENTER_ALIGNMENT);
 		testEquation.setActionCommand("testEquation");
+		testEquation.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		equation.setText("2x+0");
 		equation.setAlignmentX(CENTER_ALIGNMENT);
@@ -139,16 +124,8 @@ public class Game extends JFrame{
 		panelRight.setPreferredSize(rightPanelDimension);
 		panelRight.add(zoomIn);
 		panelRight.add(zoomOut);
-		panelRight.add(scaleX);
-		panelRight.add(scaleY);
 	}
 	public GameComponent getGameComponent() {
 		return gameComponent;
-	}
-	public JTextField getScaleX() {
-		return scaleX;
-	}
-	public JTextField getScaleY() {
-		return scaleY;
 	}
 }
