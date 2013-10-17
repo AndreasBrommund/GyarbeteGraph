@@ -28,8 +28,8 @@ public class EventHandler extends CoordinateHandler implements ActionListener, M
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		getXCoordinate(e.getX());
-		getYCoordinate(e.getY());
+		System.out.print(getXCoordinate(e.getX())+" ");
+		System.out.println(getYCoordinate(e.getY()));
 	}
 
 	@Override

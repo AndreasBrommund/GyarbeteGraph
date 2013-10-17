@@ -6,7 +6,7 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 
 
 
-	private Graph graph;
+	private final Graph graph;
 	
 	private final Color color; 
 	private float k,m;
@@ -17,6 +17,14 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 		this.graph = graph;
 		this.color = color;
 		
+		init();
+	}
+	
+	public LinearEquation(float x_1, float y_1, float x_2, float y_2,  Graph graph, Color color){
+		this.k = calcK(x_1, y_1, y_2, x_2);
+		this.m = calcM(x_1, y_1, this.k);
+		this.graph = graph;
+		this.color = color;
 		init();
 	}
 	
@@ -37,5 +45,25 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	public void init() {
 		// TODO Auto-generated method stub
 		
+	}
+	private float calcK(float x_1, float y_1, float y_2, float x_2){
+		return (y_2-y_1)/(x_2-x_1);
+	}
+	private float calcM(float x, float y, float k){
+		return (y-k*x);
+	}
+	public boolean testEquation(LinearEquation linearEquation){
+		if(getM() == linearEquation.getM() && getK() == linearEquation.getK()){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	public float getK() {
+		return k;
+	}
+	public float getM() {
+		return m;
 	}
 }
