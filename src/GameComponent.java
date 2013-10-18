@@ -20,7 +20,7 @@ public class GameComponent extends Canvas{
 	//Objects here 
 	private Graph graph;
 	private LinearEquation linearEquation;
-		
+	
 	public GameComponent(Game game) {
 		this.game = game;
 		init();
@@ -69,9 +69,13 @@ public class GameComponent extends Canvas{
 	}
 
 	public void newPoint(float x, float y){
-		x = graph.getXCoordinate(x);
-		y = graph.getYCoordinate(y);
+		x = rounding(graph.getXCoordinate(x));
+		y = rounding(graph.getYCoordinate(y));
 		
-		System.out.println("x="+x+"y="+y);
+		
+	}
+	//Can get beater
+	private float rounding(float number){
+		return Math.round(number);
 	}
 }
