@@ -110,7 +110,6 @@ public class Game extends JFrame{
 		testEquation.setActionCommand("testEquation");
 		testEquation.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		equation.setText("2x+0");
 		equation.setAlignmentX(CENTER_ALIGNMENT);
 		
 		panelTop.setLayout(new BoxLayout(panelTop, BoxLayout.Y_AXIS));
@@ -126,5 +125,8 @@ public class Game extends JFrame{
 	}
 	public GameComponent getGameComponent() {
 		return gameComponent;
+	}
+	public JLabel getEquation() {
+		return equation;
 	}
 }

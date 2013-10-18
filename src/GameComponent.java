@@ -20,7 +20,7 @@ public class GameComponent extends Canvas{
 	//Objects here 
 	private Graph graph;
 	private LinearEquation linearEquation;
-	
+		
 	public GameComponent(Game game) {
 		this.game = game;
 		init();
@@ -53,7 +53,9 @@ public class GameComponent extends Canvas{
 	
 	private void init(){
 		graph = new Graph(1f,1f);
-		linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
+		//linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
+		linearEquation = new LinearEquation(1f,-2f, graph, Color.BLUE);
+		game.getEquation().setText(linearEquation.getEquation());
 	}
 	
 	private void draw(Graphics2D g2d){
@@ -61,12 +63,15 @@ public class GameComponent extends Canvas{
 		
 		graph.draw(g2d);
 		linearEquation.draw(g2d);
-		
 	}
 	public void uppdateScreen(){
 		run();
 	}
-	public void setScale(float x,float y){
-		graph = new Graph(x, y);
+
+	public void newPoint(float x, float y){
+		x = graph.getXCoordinate(x);
+		y = graph.getYCoordinate(y);
+		
+		System.out.println("x="+x+"y="+y);
 	}
 }

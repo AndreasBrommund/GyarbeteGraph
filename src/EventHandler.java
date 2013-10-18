@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 
 
 
-public class EventHandler extends CoordinateHandler implements ActionListener, MouseListener{
+public class EventHandler implements ActionListener, MouseListener{
 	
 	private Game game;
 	
@@ -28,8 +28,7 @@ public class EventHandler extends CoordinateHandler implements ActionListener, M
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.print(getXCoordinate(e.getX())+" ");
-		System.out.println(getYCoordinate(e.getY()));
+		game.getGameComponent().newPoint(e.getX(),e.getY());
 	}
 
 	@Override

@@ -11,6 +11,8 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	private final Color color; 
 	private float k,m;
 	
+	private boolean visible;
+	
 	public LinearEquation(float k,float m, Graph graph, Color color){
 		this.k = k;
 		this.m = m;
@@ -30,21 +32,22 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	
 	@Override
 	public void draw(Graphics2D g2d) {
-		g2d.setColor(color);
-		for(float x = graph.getMinXaxis()*2;x <= graph.getMaxXaxis()*2;x+=0.0001){
-			
-			float y = k*x+m;
-			
-			if(y >= graph.getMinYaxis()&&y <= graph.getMaxYaxis()){
-				g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(y), (int)setXCoordinate(x), (int)setYCoordinate(y));
+		if(visible){
+			g2d.setColor(color);
+			for(float x = graph.getMinXaxis()*2;x <= graph.getMaxXaxis()*2;x+=0.0001){
+				
+				float y = k*x+m;
+				
+				if(y >= graph.getMinYaxis()&&y <= graph.getMaxYaxis()){
+					g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(y), (int)setXCoordinate(x), (int)setYCoordinate(y));
+				}
 			}
 		}
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		visible = false;	
 	}
 	private float calcK(float x_1, float y_1, float y_2, float x_2){
 		return (y_2-y_1)/(x_2-x_1);
@@ -52,7 +55,7 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	private float calcM(float x, float y, float k){
 		return (y-k*x);
 	}
-	public boolean testEquation(LinearEquation linearEquation){
+	public boolean testEquals(LinearEquation linearEquation){
 		if(getM() == linearEquation.getM() && getK() == linearEquation.getK()){
 			return true;
 		}else{
@@ -60,10 +63,24 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 		}
 		
 	}
-	public float getK() {
+	private float getK() {
 		return k;
 	}
-	public float getM() {
+	private float getM() {
 		return m;
+	}
+	public String getEquation(){
+		if(m < 0){
+			return "y = " +k+ "x - "+ Math.abs(m);
+		}
+		return "y = " +k+ "x + "+m;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 }
