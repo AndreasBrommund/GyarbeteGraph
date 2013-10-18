@@ -29,6 +29,7 @@ public class EventHandler implements ActionListener, MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		game.getGameComponent().newPoint(e.getX(),e.getY());
+		game.getGameComponent().uppdateScreen();
 	}
 
 	@Override

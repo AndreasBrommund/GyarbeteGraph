@@ -21,6 +21,10 @@ public class GameComponent extends Canvas{
 	private Graph graph;
 	private LinearEquation linearEquation;
 	
+	//Dots 
+	private Dot[] dot = new Dot[2];
+	private short nextDotIndex = 0;
+	
 	public GameComponent(Game game) {
 		this.game = game;
 		init();
@@ -53,9 +57,11 @@ public class GameComponent extends Canvas{
 	
 	private void init(){
 		graph = new Graph(1f,1f);
-		//linearEquation = new LinearEquation(2f, 0f, graph, Color.BLACK);
 		linearEquation = new LinearEquation(1f,-2f, graph, Color.BLUE);
 		game.getEquation().setText(linearEquation.getEquation());
+		
+	
+		
 	}
 	
 	private void draw(Graphics2D g2d){
@@ -63,6 +69,14 @@ public class GameComponent extends Canvas{
 		
 		graph.draw(g2d);
 		linearEquation.draw(g2d);
+		
+		
+		
+		for(Dot d:dot){
+			if(d != null){
+				d.draw(g2d);
+			}
+		}
 	}
 	public void uppdateScreen(){
 		run();
@@ -72,6 +86,20 @@ public class GameComponent extends Canvas{
 		x = rounding(graph.getXCoordinate(x));
 		y = rounding(graph.getYCoordinate(y));
 		
+		
+		System.out.print(x);
+		System.out.println(" "+y);
+		
+		switch (nextDotIndex){
+		case 0:
+			dot[0] = new Dot(x, y);
+			nextDotIndex = 1;
+			break;
+		case 1:
+			dot[1] = new Dot(x, y);
+			nextDotIndex = 0;
+			break;
+		}
 		
 	}
 	//Can get beater
