@@ -104,7 +104,7 @@ public class Game extends JFrame{
 		zoomOut.addActionListener(eventHandler);
 		zoomOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		testEquation.setText("Test");
+		testEquation.setText("Test if equations are equals");
 		testEquation.setPreferredSize(testEquationDimension);
 		testEquation.setAlignmentX(CENTER_ALIGNMENT);
 		testEquation.setActionCommand("testEquation");

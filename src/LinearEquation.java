@@ -11,6 +11,9 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	private final Color color; 
 	private float k,m;
 	
+	private float x_1,x_2,y_1,y_2;
+	private boolean haveCordinats = false; 
+	
 	private boolean visible;
 	
 	public LinearEquation(float k,float m, Graph graph, Color color){
@@ -23,6 +26,13 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	}
 	
 	public LinearEquation(float x_1, float y_1, float x_2, float y_2,  Graph graph, Color color){
+		this.x_1 = x_1;
+		this.y_1 = y_1;
+		this.x_2 = x_2;
+		this.y_2 = y_2;
+		
+		haveCordinats = true;
+		
 		this.k = calcK(x_1, y_1, y_2, x_2);
 		this.m = calcM(x_1, y_1, this.k);
 		this.graph = graph;
@@ -45,6 +55,36 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 		}
 	}
 
+	public boolean setPoint1(Dot dot){
+	
+		if(dot.getPosX() == x_2){
+			return false;
+		}
+		
+		this.x_1 = dot.getPosX();
+		this.y_1 = dot.getPosY();
+		
+		this.k = calcK(x_1, y_1, y_2, x_2);
+		this.m = calcM(x_1, y_1, k);
+		
+		
+		
+		return haveCordinats;
+	}
+	public boolean setPoint2(Dot dot){
+		
+		if(dot.getPosX() == x_1){
+			return false;
+		}
+		
+		this.x_2 = dot.getPosX();
+		this.y_2 = dot.getPosY();
+		
+		this.k = calcK(x_1, y_1, y_2, x_2);
+		this.m = calcM(x_1, y_1, k);
+		
+		return haveCordinats;
+	}
 	@Override
 	public void init() {
 		visible = false;	
@@ -83,4 +123,5 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
+	
 }

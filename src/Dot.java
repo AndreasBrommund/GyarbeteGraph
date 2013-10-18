@@ -9,6 +9,8 @@ public class Dot extends CoordinateHandler implements BaseEntity{
 	
 	private final int diameter = 11;
 	
+	private Color color = Color.BLACK;
+	
 	public Dot(float x, float y){
 		this.x = x;
 		this.y = y;
@@ -19,16 +21,24 @@ public class Dot extends CoordinateHandler implements BaseEntity{
 	@Override
 	public void draw(Graphics2D g2d) {
 
-		g2d.setColor(Color.DARK_GRAY);
+		g2d.setColor(color);
 		g2d.fillOval((int)setXCoordinate(x)-diameter/2, (int)setYCoordinate(y)-diameter/2, (int)diameter, (int)diameter);
 
 		
 	}
-
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
 		
 	}
+	public float getPosX() {
+		return x;
+	}
 
+	public float getPosY() {
+		return y;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
 }
