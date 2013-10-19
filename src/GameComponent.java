@@ -62,10 +62,9 @@ public class GameComponent extends Canvas{
 	private void init(){
 		graph = new Graph(1f,1f);
 		
-		linearEquation = new LinearEquation(1f,-2f, graph, Color.BLUE);
-		game.getEquation().setText(linearEquation.getEquation());	
-		
 		linearEquationUsers = new LinearEquation(-1000, -1000, -1000, -1000,graph, Color.RED);
+		
+		newGame();
 	}
 	
 	private void draw(Graphics2D g2d){
@@ -84,6 +83,30 @@ public class GameComponent extends Canvas{
 		}
 		
 		
+	}
+	private void newGame(){
+		
+		linearEquationUsers.setVisible(false);
+		
+		dot[0] = new Dot(-1000, -1000);
+		dot[1] = new Dot(-1000, -1000);
+		
+		linearEquationUsers.setPoint1(dot[0]);
+		linearEquationUsers.setPoint2(dot[1]);
+		
+		float k = (int)(Math.random()*20);
+		if((int)(Math.random()*2)==0){
+			k *= -1;
+		}
+		
+		float m = (int)(Math.random()*20);
+		if((int)(Math.random()*2)==0){
+			m *= -1;
+		}
+		linearEquation = new LinearEquation(k, m, graph, Color.BLUE);
+		game.getEquation().setText(linearEquation.getEquation());	
+		
+		uppdateScreen();
 	}
 	public void uppdateScreen(){
 		run();
@@ -122,7 +145,7 @@ public class GameComponent extends Canvas{
 			}
 			else{
 				dot[1] = dot_before;
-				JOptionPane.showMessageDialog(this,"The two x values can't be the equals!", "X error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this,"The two x values can't be equals!", "X error",JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		}
@@ -136,7 +159,7 @@ public class GameComponent extends Canvas{
 		if(linearEquation.testEquals(linearEquationUsers)){
 			JOptionPane.showMessageDialog(this,"Correct answer!","Correct", JOptionPane.PLAIN_MESSAGE);
 			if(JOptionPane.showConfirmDialog(this,"Would you like to play again?","Play again",JOptionPane.YES_NO_OPTION)==0){
-				//Play again
+				newGame();
 			}else{
 				System.exit(3);
 			}

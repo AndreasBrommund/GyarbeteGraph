@@ -16,6 +16,7 @@ public class LinearEquation extends CoordinateHandler implements BaseEntity{
 	
 	private boolean visible;
 	
+	
 	public LinearEquation(float k,float m, Graph graph, Color color){
 		this.k = k;
 		this.m = m;
