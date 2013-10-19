@@ -108,6 +108,7 @@ public class Game extends JFrame{
 		testEquation.setPreferredSize(testEquationDimension);
 		testEquation.setAlignmentX(CENTER_ALIGNMENT);
 		testEquation.setActionCommand("testEquation");
+		testEquation.addActionListener(eventHandler);
 		testEquation.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		equation.setAlignmentX(CENTER_ALIGNMENT);

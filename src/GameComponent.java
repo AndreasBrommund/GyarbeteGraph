@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class GameComponent extends Canvas{
@@ -64,7 +65,7 @@ public class GameComponent extends Canvas{
 		linearEquation = new LinearEquation(1f,-2f, graph, Color.BLUE);
 		game.getEquation().setText(linearEquation.getEquation());	
 		
-		linearEquationUsers = new LinearEquation(0, 0, 0, 0,graph, Color.RED);
+		linearEquationUsers = new LinearEquation(-1000, -1000, -1000, -1000,graph, Color.RED);
 	}
 	
 	private void draw(Graphics2D g2d){
@@ -130,5 +131,17 @@ public class GameComponent extends Canvas{
 	//Can get beater
 	private float rounding(float number){
 		return Math.round(number);
+	}
+	public void testEquation(){
+		if(linearEquation.testEquals(linearEquationUsers)){
+			JOptionPane.showMessageDialog(this,"Correct answer!","Correct", JOptionPane.PLAIN_MESSAGE);
+			if(JOptionPane.showConfirmDialog(this,"Would you like to play again?","Play again",JOptionPane.YES_NO_OPTION)==0){
+				//Play again
+			}else{
+				System.exit(3);
+			}
+		}else{
+			JOptionPane.showMessageDialog(this,"Wrong answer try again!","Wrong", JOptionPane.PLAIN_MESSAGE);  
+		}		
 	}
 }

@@ -22,6 +22,9 @@ public class EventHandler implements ActionListener, MouseListener{
 		case "zoomInButton":
 			CoordinateHandler.zoomIn();
 			break;
+		case "testEquation":
+			game.getGameComponent().testEquation();
+			break;
 		}
 		game.getGameComponent().uppdateScreen();
 	}
