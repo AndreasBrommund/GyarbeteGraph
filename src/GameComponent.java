@@ -69,7 +69,6 @@ public class GameComponent extends Canvas{
 	
 	private void draw(Graphics2D g2d){
 
-		
 		graph.draw(g2d);
 		linearEquation.draw(g2d);
 		
