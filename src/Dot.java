@@ -32,7 +32,7 @@ public class Dot extends CoordinateHandler implements BaseEntity{
 		
 		g2d.drawString(cordianates, (int)setXCoordinate(x+0.1f), (int)setYCoordinate(y+0.1f));
 
-		
+
 	}
 	@Override
 	public void init() {

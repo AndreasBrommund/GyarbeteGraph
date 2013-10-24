@@ -117,36 +117,47 @@ public class GameComponent extends Canvas{
 		
 		Dot dot_before;
 
-		switch (nextDotIndex){
-		case 0:
-			dot_before = dot[0];
-			
-			dot[0] = new Dot(x, y);
-			if(linearEquationUsers.setPoint1(dot[0])){
-				nextDotIndex = 1;
-				dot[0].setColor(Color.BLACK);
-				if(dot[1] != null){
-					dot[1].setColor(Color.GRAY);
+		if(x == dot[0].getPosX() && y == dot[0].getPosY()){
+			dot[1].setColor(Color.BLACK);
+			dot[0].setColor(Color.GRAY);
+			nextDotIndex = 0;
+		}else if(x == dot[1].getPosX() && y == dot[1].getPosY()){
+			nextDotIndex = 1;
+			dot[0].setColor(Color.BLACK);
+			dot[1].setColor(Color.GRAY);
+		}else{
+		
+			switch (nextDotIndex){
+			case 0:
+				dot_before = dot[0];
+				
+				dot[0] = new Dot(x, y);
+				if(linearEquationUsers.setPoint1(dot[0])){
+					nextDotIndex = 1;
+					dot[0].setColor(Color.BLACK);
+					if(dot[1] != null){
+						dot[1].setColor(Color.GRAY);
+					}
+				}else{
+					dot[0] = dot_before;
+					JOptionPane.showMessageDialog(this,"The two x values can't be the equals!", "X error",JOptionPane.ERROR_MESSAGE);	
 				}
-			}else{
-				dot[0] = dot_before;
-				JOptionPane.showMessageDialog(this,"The two x values can't be the equals!", "X error",JOptionPane.ERROR_MESSAGE);	
+				break;
+			case 1:
+				dot_before = dot[1];
+				dot[1] = new Dot(x, y);
+				if(linearEquationUsers.setPoint2(dot[1])){
+					nextDotIndex = 0;
+					linearEquationUsers.setVisible(true);
+					dot[1].setColor(Color.BLACK);
+					dot[0].setColor(Color.GRAY);
+				}
+				else{
+					dot[1] = dot_before;
+					JOptionPane.showMessageDialog(this,"The two x values can't be equals!", "X error",JOptionPane.ERROR_MESSAGE);
+				}
+				break;
 			}
-			break;
-		case 1:
-			dot_before = dot[1];
-			dot[1] = new Dot(x, y);
-			if(linearEquationUsers.setPoint2(dot[1])){
-				nextDotIndex = 0;
-				linearEquationUsers.setVisible(true);
-				dot[1].setColor(Color.BLACK);
-				dot[0].setColor(Color.GRAY);
-			}
-			else{
-				dot[1] = dot_before;
-				JOptionPane.showMessageDialog(this,"The two x values can't be equals!", "X error",JOptionPane.ERROR_MESSAGE);
-			}
-			break;
 		}
 		
 	}
