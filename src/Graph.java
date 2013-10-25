@@ -8,10 +8,7 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 	private float maxYaxis,minYaxis;
 	private final float originX, originY;
 	
-	public Graph(float sX,float sY){
-		
-		scaleXaxis = sX;
-		scaleYaxis = sY;
+	public Graph(){
 		
 		originX = setXCoordinate(0);
 		originY = setYCoordinate(0);

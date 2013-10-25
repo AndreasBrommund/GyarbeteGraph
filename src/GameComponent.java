@@ -60,7 +60,7 @@ public class GameComponent extends Canvas{
 	}
 	
 	private void init(){
-		graph = new Graph(1f,1f);
+		graph = new Graph();
 		
 		linearEquationUsers = new LinearEquation(-1000, -1000, -1000, -1000,graph, Color.RED);
 		
@@ -93,12 +93,12 @@ public class GameComponent extends Canvas{
 		linearEquationUsers.setPoint1(dot[0]);
 		linearEquationUsers.setPoint2(dot[1]);
 		
-		float k = (int)(Math.random()*20);
+		float k = (int)(Math.random()*10);
 		if((int)(Math.random()*2)==0){
 			k *= -1;
 		}
 		
-		float m = (int)(Math.random()*20);
+		float m = (int)(Math.random()*10);
 		if((int)(Math.random()*2)==0){
 			m *= -1;
 		}
