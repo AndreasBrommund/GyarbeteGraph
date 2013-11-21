@@ -25,11 +25,11 @@ public class CoordinateHandler extends Canvas{
 	}
 	
 	public static void zoomIn(){
-		scale += 5;
+		scale += 4;
 	}
 	public static void zoomOut(){
-		if(scale > 5){
-			scale -= 5;
+		if(scale > 28){
+			scale -= 4;
 			
 		}
 	}

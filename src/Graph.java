@@ -29,16 +29,12 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 		
 		for(float y = 0;y<=maxYaxis;y+=scaleYaxis){
 			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y));
-		}
-		for(float y = 0;y>=minYaxis;y-=scaleYaxis){
-			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y));
+			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y*-1), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y*-1));
 		}
 	
 		for(float x = 0;x<=maxXaxis;x+=scaleXaxis){
 			g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x), (int)setYCoordinate(maxYaxis));
-		}
-		for(float x = 0;x>=minXaxis;x-=scaleXaxis){
-			g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x), (int)setYCoordinate(maxYaxis));
+			g2d.drawLine((int)setXCoordinate(x*-1), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x*-1), (int)setYCoordinate(maxYaxis));
 		}
 		
 		g2d.setColor(new Color(0,0,0));
