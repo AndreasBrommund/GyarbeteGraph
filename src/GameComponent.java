@@ -140,7 +140,7 @@ public class GameComponent extends Canvas{
 					}
 				}else{
 					dot[0] = dot_before;
-					JOptionPane.showMessageDialog(this,"The two x values can't be the equals!", "X error",JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(this,"De två X värdena kan inte var samma!", "X fel",JOptionPane.ERROR_MESSAGE);	
 				}
 				break;
 			case 1:
@@ -154,7 +154,7 @@ public class GameComponent extends Canvas{
 				}
 				else{
 					dot[1] = dot_before;
-					JOptionPane.showMessageDialog(this,"The two x values can't be equals!", "X error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(this,"De två X värdena kan inte var samma!", "X fel",JOptionPane.ERROR_MESSAGE);
 				}
 				break;
 			}
@@ -167,14 +167,14 @@ public class GameComponent extends Canvas{
 	}
 	public void testEquation(){
 		if(linearEquation.testEquals(linearEquationUsers)){
-			JOptionPane.showMessageDialog(this,"Correct answer!","Correct", JOptionPane.PLAIN_MESSAGE);
-			if(JOptionPane.showConfirmDialog(this,"Would you like to play again?","Play again",JOptionPane.YES_NO_OPTION)==0){
+			JOptionPane.showMessageDialog(this,"Rätt svar!","Rätt!", JOptionPane.PLAIN_MESSAGE);
+			if(JOptionPane.showConfirmDialog(this,"Vill du spela igen?","Spela igen",JOptionPane.YES_NO_OPTION)==0){
 				newGame();
 			}else{
 				System.exit(3);
 			}
 		}else{
-			JOptionPane.showMessageDialog(this,"Wrong answer try again!","Wrong", JOptionPane.PLAIN_MESSAGE);  
+			JOptionPane.showMessageDialog(this,"Fel, testa igen!","Fel", JOptionPane.PLAIN_MESSAGE);  
 		}		
 	}
 }
