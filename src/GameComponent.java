@@ -15,6 +15,7 @@ public class GameComponent extends Canvas{
 	
 	//Width 543
 	//Height 590
+	//
 	
 	//Graphic stuff
 	private Graphics2D g2d;
