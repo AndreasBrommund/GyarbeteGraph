@@ -94,12 +94,35 @@ public class GameComponent extends Canvas{
 		linearEquationUsers.setPoint1(dot[0]);
 		linearEquationUsers.setPoint2(dot[1]);
 		
-		float k = (int)(Math.random()*9);
+		float k = (int) (Math.random()*5);
+		
+		switch ((int)(Math.random()*2)){
+	
+		case 0:
+			k += 0.50;
+			break;
+	
+		default:
+			break;
+		}
+	
 		if((int)(Math.random()*2)==0){
 			k *= -1;
 		}
 		
-		float m = (int)(Math.random()*9);
+		float m = (int) (Math.random()*5);
+		
+		/*switch ((int)(Math.random()*2)){
+		
+		case 0:
+			m += 0.50;
+			break;
+	
+		default:
+			break;
+		}*/
+
+		
 		if((int)(Math.random()*2)==0){
 			m *= -1;
 		}
@@ -108,6 +131,8 @@ public class GameComponent extends Canvas{
 		
 		uppdateScreen();
 	}
+
+	
 	public void uppdateScreen(){
 		run();
 	}
