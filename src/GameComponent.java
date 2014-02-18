@@ -30,6 +30,8 @@ public class GameComponent extends Canvas{
 	private Dot[] dot = new Dot[2];
 	private short nextDotIndex = 0;
 	
+	
+	private int nubersOfAttempts = 0;
 	public GameComponent(Game game) {
 		this.game = game;
 		init();
@@ -86,6 +88,8 @@ public class GameComponent extends Canvas{
 	}
 	private void newGame(){
 		
+		nubersOfAttempts = 0;
+		
 		linearEquationUsers.setVisible(false);
 		
 		dot[0] = new Dot(-1000, -1000);
@@ -128,6 +132,8 @@ public class GameComponent extends Canvas{
 		}
 		linearEquation = new LinearEquation(k, m, graph, Color.BLUE);
 		game.getEquation().setText(linearEquation.getEquation());	
+		
+		linearEquation.setVisible(false);
 		
 		uppdateScreen();
 	}
@@ -192,6 +198,9 @@ public class GameComponent extends Canvas{
 		return Math.round(number);
 	}
 	public void testEquation(){
+		
+		nubersOfAttempts++;
+		
 		if(linearEquation.testEquals(linearEquationUsers)){
 			JOptionPane.showMessageDialog(this,"Rätt svar!","Rätt!", JOptionPane.PLAIN_MESSAGE);
 			if(JOptionPane.showConfirmDialog(this,"Vill du spela igen?","Spela igen",JOptionPane.YES_NO_OPTION)==0){
@@ -200,7 +209,18 @@ public class GameComponent extends Canvas{
 				System.exit(3);
 			}
 		}else{
-			JOptionPane.showMessageDialog(this,"Fel, testa igen!","Fel", JOptionPane.PLAIN_MESSAGE);  
+			if(nubersOfAttempts >= 2){
+				JOptionPane.showMessageDialog(this,"Fel, den rätta ekvationen kommer att ritas ut!","Fel", JOptionPane.PLAIN_MESSAGE);
+				linearEquation.setVisible(true);
+				uppdateScreen();
+				if(JOptionPane.showConfirmDialog(this,"Vill du spela igen?","Spela igen",JOptionPane.YES_NO_OPTION)==0){
+					newGame();
+				}else{
+					System.exit(3);
+				}
+			}else{
+				JOptionPane.showMessageDialog(this,"Fel, testa igen!","Fel", JOptionPane.PLAIN_MESSAGE);
+			}
 		}		
 	}
 }
