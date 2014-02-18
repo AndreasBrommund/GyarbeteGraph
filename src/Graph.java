@@ -25,16 +25,25 @@ public class Graph extends CoordinateHandler implements BaseEntity{
 		maxYaxis = 800/scale;
 		minYaxis = -800/scale;
 		
-		g2d.setColor(new Color(220,220,220));
+		
 		
 		for(float y = 0;y<=maxYaxis;y+=scaleYaxis){
+			g2d.setColor(new Color(220,220,220));
 			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y));
 			g2d.drawLine((int)setXCoordinate(minXaxis), (int)setYCoordinate(y*-1), (int)setXCoordinate(maxXaxis), (int)setYCoordinate(y*-1));
+			
+			g2d.setColor(new Color(0,0,0));
+			g2d.drawString(Integer.toString((int)y),(int)setXCoordinate(0), (int)setYCoordinate(y));
+			g2d.drawString(Integer.toString((int)y),(int)setXCoordinate(0), (int)setYCoordinate(y*-1));
 		}
 	
 		for(float x = 0;x<=maxXaxis;x+=scaleXaxis){
+			g2d.setColor(new Color(220,220,220));
 			g2d.drawLine((int)setXCoordinate(x), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x), (int)setYCoordinate(maxYaxis));
 			g2d.drawLine((int)setXCoordinate(x*-1), (int)setYCoordinate(minYaxis), (int)setXCoordinate(x*-1), (int)setYCoordinate(maxYaxis));
+			g2d.setColor(new Color(0,0,0));
+			g2d.drawString(Integer.toString((int)x),(int)setXCoordinate(x), (int)setYCoordinate(0));
+			g2d.drawString(Integer.toString((int)x),(int)setXCoordinate(x*-1), (int)setYCoordinate(0));
 		}
 		
 		g2d.setColor(new Color(0,0,0));
